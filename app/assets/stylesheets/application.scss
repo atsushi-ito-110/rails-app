@@ -1,0 +1,53 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require_tree .
+*= require_self
+*/
+
+/*ブラウザごとに自動で設定されてしまうcssを無効化*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  height: 70px;
+  background-color: #00bfff;
+  color: #FFFFFF;
+  .container {
+    width: 1024px;
+    margin: 0 auto;
+  }
+  a, a:visited {
+    color: #FFFFFF;
+  }
+  .top {
+    /*navメニューを横に回り込ませる*/
+    float: left;
+    display: inline-block;
+    line-height: 70px;
+  }
+  nav {
+    ul {
+      /* 点をけす */
+      list-style: none;
+      /*右寄せ*/
+      float: right;
+      li {
+        /*横並び*/
+        display: inline-block;
+        line-height: 70px;
+      }
+    }
+  }
+}

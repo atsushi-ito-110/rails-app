@@ -8,7 +8,24 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <!-- 追加 START -->
+  <header id="header" class="">
+    <div class="container">
+      <a href="/" title="TOP" class="top">TOP</a>
+      <nav>
+        <ul>
+          <!-- ログイン判定 -->
+          <% if user_signed_in? %>
+            <li>
+              <!-- リンク先のurlに飛んでもエラーになるけど、一応設定しておく -->
+              <a href="/user/1" title=""><%= current_user.email %></a>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- 追加 END -->
   <body>
     <%= yield %>
   </body>
