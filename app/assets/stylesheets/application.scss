@@ -32,19 +32,15 @@ header {
     color: #FFFFFF;
   }
   .top {
-    /*navメニューを横に回り込ませる*/
     float: left;
     display: inline-block;
     line-height: 70px;
   }
   nav {
     ul {
-      /* 点をけす */
       list-style: none;
-      /*右寄せ*/
       float: right;
       li {
-        /*横並び*/
         display: inline-block;
         line-height: 70px;
       }
