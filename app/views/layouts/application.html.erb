@@ -10,12 +10,11 @@
   </head>
   <header id="header" class="">
     <div class="container">
-      <a href="/" title="TOP" class="top">TOP</a>
+      <a href="/home" title="Home" class="top">Home</a> <!-- 修正 -->
       <nav>
         <ul>
           <% if user_signed_in? %>
             <li>
-              <!-- railsのヘルパーを使用してリンクを生成 -->
               <%= link_to current_user.email, user_path(current_user.id), title: "ユーザ画面" %>
             </li>
           <% end %>
