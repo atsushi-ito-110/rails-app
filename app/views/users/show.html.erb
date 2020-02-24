@@ -1,22 +1,28 @@
-<div class="container">
+<div class="user-container">
   <p id="notice"><%= flash[:notice] %></p>
-  <h1>ユーザー情報</h1>
-  <div>
-    <p><%= link_to "編集", edit_user_path(@user.id) %></p>
+  <div class="main-container-title">
+    <h1>
+      ユーザー情報
+      <%= link_to edit_user_path(@user.id), class: "edit" do %>
+        <i class="far fa-edit"></i>
+      <% end %>
+    </h1>
+  </div>
+  <div class="user-fields">
     <div class="user-field">
-      <p>ニックネーム</p>
+      <label for="">ニックネーム</label>
       <p><%= @user.name %></p>
     </div>
     <div class="user-field">
-      <p>メールアドレス</p>
+      <label for="">メールアドレス</label>
       <p><%= @user.email %></p>
     </div>
     <div class="user-field">
-      <p>紹介文</p>
+      <label for="">自己紹介</label>
       <p><%= @user.introduction %></p>
     </div>
     <div class="user-field">
-      <p></p>
+      <label for="">画像</label>
       <!-- 画像を最大300*300で表示 -->
       <p><%= image_tag attachment_url(@user, :profile_image, :fill, 300, 300, format: "jpg") %></p>
     </div>

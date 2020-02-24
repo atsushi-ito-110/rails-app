@@ -63,6 +63,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
-# 末尾に追記
 gem 'refile', require: 'refile/rails', github: 'refile/refile', branch: 'master'
 gem 'refile-mini_magick'
+
+# 末尾に追記
+gem 'font-awesome-sass', '~> 5.4.1'
+gem "bulma-rails", "~> 0.4.2"
