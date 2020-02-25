@@ -1,4 +1,4 @@
-<div class="user-container">
+<div class="main-container">
   <p id="notice"><%= flash[:notice] %></p>
   <div class="main-container-title">
     <h1>
@@ -8,22 +8,21 @@
       <% end %>
     </h1>
   </div>
-  <div class="user-fields">
-    <div class="user-field">
+  <div class="main-fields">
+    <div class="field">
       <label for="">ニックネーム</label>
       <p><%= @user.name %></p>
     </div>
-    <div class="user-field">
+    <div class="field">
       <label for="">メールアドレス</label>
       <p><%= @user.email %></p>
     </div>
-    <div class="user-field">
+    <div class="field">
       <label for="">自己紹介</label>
-      <p><%= @user.introduction %></p>
+      <p><%= simple_format(@user.introduction) %></p>
     </div>
-    <div class="user-field">
+    <div class="field">
       <label for="">画像</label>
-      <!-- 画像を最大300*300で表示 -->
       <p><%= image_tag attachment_url(@user, :profile_image, :fill, 300, 300, format: "jpg") %></p>
     </div>
   </div>

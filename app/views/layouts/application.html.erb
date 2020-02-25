@@ -13,21 +13,29 @@
       <a href="/home" title="Home" class="top">Home</a>
       <nav>
         <ul>
-          <!-- if else 内を修正 -->
           <% if user_signed_in? %>
             <li>
               <%= link_to user_path(current_user.id), title: "ユーザ画面" do %>
                 <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.png", size: "50x60" %>
               <% end %>
             </li>
-            <!-- ログアウトの見た目だけ作成 -->
-            <li><a href="" title=""><i class="fas fa-sign-out-alt"></i></a></li>
+            <li>
+              <%= link_to destroy_user_session_path, title: "ログアウト", method: :delete do %>
+                <i class="fas fa-sign-out-alt"></i>
+              <% end %>
+            </li>
           <% else %>
             <li>
-              <%= image_tag "no_image.png", size: "50x60" %>
+              <%= link_to new_user_session_path, title: "ログイン" do %>
+                <i class="fas fa-sign-in-alt"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path, title: "アカウント作成" do %>
+                <i class="fas fa-user-plus"></i>
+              <% end %>
             </li>
           <% end %>
-          <!-- if else 内を修正 -->
         </ul>
       </nav>
     </div>
