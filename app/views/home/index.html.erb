@@ -1,2 +1,17 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="main-container">
+  <p id="notice"><%= flash[:notice] %></p>
+  <div class="main-fields">
+    <%= form_for @tweet do |f| %>
+      <p><%= f.text_area :content, class: "textarea" %></p>
+      <%= f.submit "ツイートする", class: "button is-primary main-botton" %>
+    <% end %>
+  </div>
+
+  <div class="main-fields">
+    <% @tweets.each do |tweet| %>
+      <div>
+        <%= simple_format(tweet.content) %>
+      </div>
+    <% end %>
+  </div>
+</div>
