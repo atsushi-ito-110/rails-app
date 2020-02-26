@@ -1,8 +1,16 @@
 <div class="main-container">
-  <p id="notice"><%= flash[:notice] %></p>
+  <!-- 6行修正 -->
+  <% if flash[:notice]  %>
+    <div class="notification is-warning is-light">
+      <button class="delete"></button>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
   <div class="main-fields">
     <%= form_for @tweet do |f| %>
-      <p><%= f.text_area :content, class: "textarea" %></p>
+      <!-- 1行修正 -->
+      <p><%= f.text_area :content, class: "textarea", placeholder: "ツイート" %></p>
       <%= f.submit "ツイートする", class: "button is-primary main-botton" %>
     <% end %>
   </div>

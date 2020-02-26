@@ -2,7 +2,9 @@ class TweetsController < ApplicationController
 
   def create
     tweet = current_user.tweets.new(tweet_params)
-    tweet.save
+    unless tweet.save
+      flash[:notice] = "ツイートになにか入力してください"
+    end
     redirect_to home_path
   end
 
