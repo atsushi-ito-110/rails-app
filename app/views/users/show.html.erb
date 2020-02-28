@@ -23,7 +23,7 @@
     </div>
     <div class="field">
       <label for="">画像</label>
-      <p><%= image_tag attachment_url(@user, :profile_image, :fill, 300, 300, format: "jpg") %></p>
+      <p><%= image_tag attachment_url(@user, :profile_image, :fill, 300, 300, format: "jpg", fallback: "no_image.png") %></p>
     </div>
   </div>
 </div>
