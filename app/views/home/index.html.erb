@@ -7,17 +7,14 @@
     <script type="text/javascript">
       var button_delete = document.querySelector('.delete')
 
-      if (button_delete) {
-        button_delete.addEventListener('click', function (event) {
-          this.parentNode.style.display = "none"
-        })
-      }
+      button_delete.addEventListener('click', function (event) {
+        this.parentNode.style.display = "none"
+      })
     </script>
   <% end %>
 
   <div class="main-fields">
     <%= form_for @tweet do |f| %>
-      <!-- TODO: 非ログイン状態のレイアウト -->
       <div class="field">
         <%= f.text_area :content, class: "textarea", placeholder: "ツイート", disabled: !user_signed_in? %>
       </div>
