@@ -1,23 +1,41 @@
 <div class="main-container">
-  <!-- 6行修正 -->
   <% if flash[:notice]  %>
     <div class="notification is-warning is-light">
       <button class="delete"></button>
       <%= flash[:notice] %>
     </div>
+    <script type="text/javascript">
+      var button_delete = document.querySelector('.delete')
+
+      if (button_delete) {
+        button_delete.addEventListener('click', function (event) {
+          this.parentNode.style.display = "none"
+        })
+      }
+    </script>
   <% end %>
 
   <div class="main-fields">
     <%= form_for @tweet do |f| %>
-      <!-- 1行修正 -->
-      <p><%= f.text_area :content, class: "textarea", placeholder: "ツイート" %></p>
-      <%= f.submit "ツイートする", class: "button is-primary main-botton" %>
+      <!-- TODO: 非ログイン状態のレイアウト -->
+      <div class="field">
+        <%= f.text_area :content, class: "textarea", placeholder: "ツイート", disabled: !user_signed_in? %>
+      </div>
+      <div class="field is-grouped is-grouped-right">
+        <%= f.submit "ツイートする", class: "button is-primary main-botton", disabled: !user_signed_in? %>
+      </div>
     <% end %>
   </div>
 
-  <div class="main-fields">
+  <div class="tweets">
     <% @tweets.each do |tweet| %>
-      <div>
+      <div class="tweet">
+        <p>
+          <%= link_to user_path(tweet.user_id), title: "ユーザ画面" do %>
+            <%= attachment_image_tag tweet.user, :profile_image, :fill, 30, 30, class: "profile-image", format: 'jpeg', fallback: "no_image.png", size: "30x30" %>
+            <span><%= tweet.user.name %></span>
+          <% end %>
+        </p>
         <%= simple_format(tweet.content) %>
       </div>
     <% end %>

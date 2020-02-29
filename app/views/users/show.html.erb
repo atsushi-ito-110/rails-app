@@ -3,8 +3,10 @@
   <div class="main-container-title">
     <h1>
       ユーザー情報
-      <%= link_to edit_user_path(@user.id), class: "edit" do %>
-        <i class="far fa-edit"></i>
+      <% if user_signed_in? && current_user.id == @user.id %>
+        <%= link_to edit_user_path(@user.id), class: "edit" do %>
+          <i class="far fa-edit"></i>
+        <% end %>
       <% end %>
     </h1>
   </div>
@@ -13,10 +15,12 @@
       <label for="">ニックネーム</label>
       <p><%= @user.name %></p>
     </div>
-    <div class="field">
-      <label for="">メールアドレス</label>
-      <p><%= @user.email %></p>
-    </div>
+    <% if user_signed_in? && current_user.id == @user.id %>
+      <div class="field">
+        <label for="">メールアドレス</label>
+        <p><%= @user.email %></p>
+      </div>
+    <% end %>
     <div class="field">
       <label for="">自己紹介</label>
       <p><%= simple_format(@user.introduction) %></p>

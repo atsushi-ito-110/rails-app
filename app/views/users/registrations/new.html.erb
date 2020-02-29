@@ -3,29 +3,40 @@
     <h2>アカウント作成</h2>
   </div>
   <div class="main-fields">
+
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
-        <%= f.label :email %>
-        <p><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %></p>
+        <div class="control has-icons-left">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email",class: "input #{'is-danger' unless resource.errors.messages[:email].empty?}" %>
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </div>
       </div>
 
       <div class="field">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <p><%= f.password_field :password, autocomplete: "new-password", class: "input" %></p>
+        <div class="control has-icons-left">
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "input #{'is-danger' unless resource.errors.messages[:password].empty?}" %>
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </div>
       </div>
 
       <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <p><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %></p>
+        <div class="control has-icons-left">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password confirmation", class: "input #{'is-danger' unless resource.errors.messages[:password_confirmation].empty?}" %>
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </div>
       </div>
 
-      <div class="actions">
-        <%= f.submit "作成", class: "button is-primary main-botton" %>
+      <div class="field">
+        <div class="control">
+          <%= f.submit "作成", class: "button is-primary main-botton" %>
+        </div>
       </div>
     <% end %>
   </div>

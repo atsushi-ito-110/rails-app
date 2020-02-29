@@ -83,7 +83,7 @@ header {
         font-weight: 600;
       }
       p {
-        padding: 10px 20px;
+        // padding: 10px 20px;
       }
     }
     .actions {
@@ -104,4 +104,23 @@ header {
   content: "";
   display: block;
   clear: both;
+}
+.tweets {
+  margin: 20px auto;
+  background-color: #f5f5f5;
+  .tweet {
+    padding: 15px;
+    border-top: 1px solid #ffffff;
+    .profile-image {
+      border-radius: 50%;
+    }
+    a {
+      display: inline-block;
+      height: 30px;
+      span {
+        vertical-align: top;
+        color: #000;
+      }
+    }
+  }
 }

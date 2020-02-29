@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-
+  before_action :authenticate_user!
   def create
     tweet = current_user.tweets.new(tweet_params)
     unless tweet.save
