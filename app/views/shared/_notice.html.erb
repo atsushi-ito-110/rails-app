@@ -1,0 +1,13 @@
+<% if flash[:notice]  %>
+  <div class="notification is-warning is-light">
+    <button class="delete"></button>
+    <%= flash[:notice] %>
+  </div>
+  <script type="text/javascript">
+    var button_delete = document.querySelector('.delete')
+
+    button_delete.addEventListener('click', function (event) {
+      this.parentNode.style.display = "none"
+    })
+  </script>
+<% end %>

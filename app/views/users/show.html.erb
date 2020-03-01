@@ -1,5 +1,5 @@
 <div class="main-container">
-  <p id="notice"><%= flash[:notice] %></p>
+  <%= render "shared/notice", flash: flash  %>
   <div class="main-container-title">
     <h1>
       ユーザー情報
