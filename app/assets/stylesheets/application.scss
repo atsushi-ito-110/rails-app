@@ -106,9 +106,12 @@ header {
   clear: both;
 }
 .tweets {
+  width: 100%;
   margin: 20px auto;
   background-color: #f5f5f5;
+  display: inline-block;
   .tweet {
+    width: 100%;
     padding: 15px;
     border-top: 1px solid #ffffff;
     .profile-image {
@@ -121,6 +124,15 @@ header {
         vertical-align: top;
         color: #000;
       }
+    }
+    a {
+      float: left;
+    }
+    .time {
+      float: right;
+    }
+    &-content {
+      margin-top: 10px;
     }
   }
 }
