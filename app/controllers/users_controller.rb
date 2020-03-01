@@ -7,21 +7,25 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
-  end
-
-  def update
-    # 追記
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:notice] = "保存しました"
-      redirect_to user_path(@user)
+    if params[:id].to_i == current_user.id
+      @user = User.find(params[:id])
     else
+      redirect_to user_path(params[:id])
     end
   end
 
-  # 追記: ストロングパラメーターに追加したカラムを記載
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:notice] = "保存しました"
+      redirect_to user_path(params[:id])
+    else
+      flash[:notice] = "保存に失敗しました"
+      render 'edit'
+    end
+  end
+
   def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image)
+    params.require(:user).permit(:email, :name, :introduction, :profile_image)
   end
 end

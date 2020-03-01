@@ -5,12 +5,7 @@
   <div class="main-fields">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
-        <div class="control has-icons-left">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email",class: "input #{'is-danger' unless resource.errors.messages[:email].empty?}" %>
-          <span class="icon is-small is-left">
-            <i class="fas fa-envelope"></i>
-          </span>
-        </div>
+        <%= render "shared/email", resource: resource, f: f, autofocus: true %>
       </div>
 
       <div class="field">

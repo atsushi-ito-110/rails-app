@@ -1,4 +1,4 @@
 class Tweet < ApplicationRecord
-  validates :content, presence: true #追記
+  validates :content, presence: true
   belongs_to :user
 end
