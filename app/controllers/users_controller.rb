@@ -20,8 +20,8 @@ class UsersController < ApplicationController
       flash[:notice] = "保存しました"
       redirect_to user_path(params[:id])
     else
-      flash[:notice] = "保存に失敗しました"
-      render 'edit'
+      flash.now[:notice] = "保存に失敗しました"
+      render 'users/edit'
     end
   end
 
