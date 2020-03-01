@@ -11,7 +11,7 @@
       </div>
       <div class="field">
         <label for="">メールアドレス</label>
-        <p><%= f.text_field :email, class: "input" %></p>
+        <%= render "shared/email", resource: @user, f: f, autofocus: false %>
       </div>
       <div class="field">
         <label for="">自己紹介</label>
@@ -22,7 +22,7 @@
         <p><%= f.attachment_field :profile_image %></p>
       </div>
       <div class="actions">
-        <%= link_to "キャンセル", :back, class: "button is-white main-botton" %>
+        <%= link_to "キャンセル", user_path(@user.id), class: "button is-white main-botton" %>
         <%= f.submit "保存", class: "button is-primary main-botton" %>
       </div>
     <% end %>

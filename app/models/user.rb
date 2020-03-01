@@ -4,5 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   attachment :profile_image
-  has_many :tweets #追記
+  has_many :tweets
+  # validates :email, presence: true
 end
