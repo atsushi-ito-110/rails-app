@@ -19,6 +19,9 @@
       <label for="">自己紹介</label>
       <p><%= simple_format(@user.introduction) %></p>
     </div>
+    <div class="field">
+      <p>ツイート <%= @tweets.length %> フォロー <%= @follows.length %> フォロワー <%= @followers.length %></p>
+    </div>
     <% unless @user.id == current_user.id %>
       <div class="field">
         <div class="control">
