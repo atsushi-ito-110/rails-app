@@ -1,15 +1,17 @@
 <div class="main-container">
   <%= render "shared/notice", flash: flash %>
-  <div class="main-fields">
-    <%= form_for @tweet do |f| %>
-      <div class="field">
-        <%= f.text_area :content, placeholder: "ツイート", disabled: !user_signed_in?, class: "textarea #{'is-danger' unless @tweet.errors.messages[:content].empty?}" %>
-      </div>
-      <div class="field is-grouped is-grouped-right">
-        <%= f.submit "ツイートする", class: "button is-primary main-botton", disabled: !user_signed_in? %>
-      </div>
-    <% end %>
-  </div>
+  <% if user_signed_in? %>
+    <div class="main-fields">
+      <%= form_for @tweet do |f| %>
+        <div class="field">
+          <%= f.text_area :content, placeholder: "ツイート", disabled: !user_signed_in?, class: "textarea #{'is-danger' unless @tweet.errors.messages[:content].empty?}" %>
+        </div>
+        <div class="field is-grouped is-grouped-right">
+          <%= f.submit "ツイートする", class: "button is-primary main-botton", disabled: !user_signed_in? %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
   <%= render "shared/tweets", tweets: @tweets %>
 </div>
