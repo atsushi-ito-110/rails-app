@@ -66,7 +66,6 @@ gem 'devise'
 gem 'refile', require: 'refile/rails', github: 'refile/refile', branch: 'master'
 gem 'refile-mini_magick'
 
-# 末尾に追記
 gem 'font-awesome-sass', '~> 5.4.1'
 gem "bulma-rails", "~> 0.4.2"
 
@@ -74,3 +73,5 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+gem 'bulmajs-rails'

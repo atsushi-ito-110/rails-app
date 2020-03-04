@@ -4,6 +4,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @tweets = Tweet.where(user_id: params[:id]).order(id: :DESC)
+    @follow = Follow.where(user_id: current_user.id, follow_user_id: params[:id])
   end
 
   def edit

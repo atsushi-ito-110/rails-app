@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_033720) do
+ActiveRecord::Schema.define(version: 2020_03_03_181820) do
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "follow_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "follow_user_id"], name: "index_follows_on_user_id_and_follow_user_id", unique: true
+  end
 
   create_table "tweets", force: :cascade do |t|
     t.integer "user_id"

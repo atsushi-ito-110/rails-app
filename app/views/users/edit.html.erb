@@ -21,9 +21,11 @@
         <label for="">プロフィール画像</label>
         <p><%= f.attachment_field :profile_image %></p>
       </div>
-      <div class="actions">
-        <%= link_to "キャンセル", user_path(@user.id), class: "button is-white main-botton" %>
-        <%= f.submit "保存", class: "button is-primary main-botton" %>
+      <div class="field">
+        <div class="control">
+          <%= link_to "キャンセル", user_path(@user.id), class: "button is-white main-botton" %>
+          <%= f.submit "保存", class: "button is-primary main-botton" %>
+        </div>
       </div>
     <% end %>
   </div>

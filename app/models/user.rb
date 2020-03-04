@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   attachment :profile_image
   has_many :tweets
-  # validates :email, presence: true
+  has_many :follows # 追記
 end

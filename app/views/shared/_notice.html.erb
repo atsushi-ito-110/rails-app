@@ -1,5 +1,11 @@
 <% if flash[:notice]  %>
-  <div class="notification is-warning is-light">
+  <% if flash[:is_warning] %>
+    <div class="notification is-warning">
+  <% elsif flash[:is_success] %>
+    <div class="notification is-success">
+  <% else %>
+    <div class="notification">
+  <% end %>
     <button class="delete"></button>
     <%= flash[:notice] %>
   </div>
@@ -7,7 +13,15 @@
     var button_delete = document.querySelector('.delete')
 
     button_delete.addEventListener('click', function (event) {
-      this.parentNode.style.display = "none"
+      var _this = this
+      // _this.parentNode.classList.add('fadeout')
+      _this.parentNode.classList.add('is-hidden')
+      // setTimeout(function () {
+      //   _this.parentNode.style.display = "none"
+      // }, 1000)
     })
+    setTimeout(function () {
+      button_delete.click()
+    }, 2500)
   </script>
 <% end %>
