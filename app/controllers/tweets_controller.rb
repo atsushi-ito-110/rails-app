@@ -4,14 +4,24 @@ class TweetsController < ApplicationController
     @user = current_user
     @tweet = @user.tweets.new(tweet_params)
     if @tweet.save
-      flash[:notice] = "ツイートしました"
-      flash[:is_success] = true
-      redirect_to home_path
+      results = {
+        flash: {
+          notice: "ツイートしました",
+          is_success: true,
+        },
+        tweets: Tweet.all.order(id: "DESC"),
+        tweet: Tweet.new,
+      }
+      logger.info(results[:tweets].length)
+      render 'home/create', locals: { results: results }
     else
-      @tweets = Tweet.all.order(id: "DESC")
-      flash.now[:notice] = "ツイートになにか入力してください"
-      flash[:is_warning] = true
-      render 'home/index'
+      results = {
+        flash: {
+          notice: "ツイートになにか入力してください",
+          is_warning: true,
+        },
+      }
+      render 'home/create', locals: { results: results }
     end
   end
 

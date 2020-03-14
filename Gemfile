@@ -75,3 +75,7 @@ group :production do
 end
 
 gem 'bulmajs-rails'
+
+gem 'aws-sdk'
+
+gem 'jquery-rails'

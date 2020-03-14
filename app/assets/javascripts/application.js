@@ -15,3 +15,5 @@
 //= require turbolinks
 //= require bulma
 //= require_tree .
+//= require jquery
+//= require jquery_ujs
