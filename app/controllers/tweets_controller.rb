@@ -35,7 +35,6 @@ class TweetsController < ApplicationController
     end
     @tweets = @tweets.order(id: :DESC)
     @tweet = @user.tweets.new()
-    @search = Tweet.new(content: params[:content])
     render 'home/index'
   end
 
