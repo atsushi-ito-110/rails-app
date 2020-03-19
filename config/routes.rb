@@ -6,6 +6,6 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions'
   }
   resources :users, only: [:index, :show, :edit, :update]
-  resources :tweets, only: [:create]
+  resources :tweets, only: [:create, :index]
   resources :follows, only: [:create, :destroy] # 追記
 end

@@ -15,6 +15,12 @@
         <ul>
           <% if user_signed_in? %>
             <li>
+              <%= form_with url: tweets_path, model: @search, method: :get, local: true do |f| %>
+                <%= f.text_field :content %>
+                <%= f.submit "検索", class: "button is-primary main-botton" %>
+              <% end %>
+            </li>
+            <li>
               <%= link_to user_path(current_user.id), title: "ユーザ画面" do %>
                 <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.png", size: "50x60" %>
               <% end %>

@@ -25,6 +25,20 @@ class TweetsController < ApplicationController
     end
   end
 
+  def index
+    if user_signed_in?
+      @user = current_user
+    end
+    @tweets = Tweet.all
+    unless params[:content].blank?
+      @tweets = @tweets.where("content LIKE ?", "%#{params[:content]}%")
+    end
+    @tweets = @tweets.order(id: :DESC)
+    @tweet = @user.tweets.new()
+    @search = Tweet.new(content: params[:content])
+    render 'home/index'
+  end
+
   private
   def tweet_params
     params.require(:tweet).permit(:user_id, :content)
