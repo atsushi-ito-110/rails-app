@@ -16,8 +16,14 @@
           <% if user_signed_in? %>
             <li>
               <%= form_tag tweets_path, method: :get, local: true do %>
-                <%= text_field_tag :content, params[:content] %>
-                <%= submit_tag "検索", class: "button is-primary main-botton" %>
+                <div class="field has-addons">
+                  <div class="control">
+                    <%= text_field_tag :content, params[:content], class: "input", placeholder: "Find tweets" %>
+                  </div>
+                  <div class="control">
+                    <%= submit_tag "検索", class: "button is-info", style: "display: none;" %>
+                  </div>
+                </div>
               <% end %>
             </li>
             <li>

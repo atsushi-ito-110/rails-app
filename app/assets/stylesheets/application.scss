@@ -44,6 +44,9 @@ header {
         line-height: 60px;
         float: left;
         padding-left: 15px;
+        .control {
+          padding: 12px 0;
+        }
         img {
           padding: 5px 0;
           border-radius: 50%;
