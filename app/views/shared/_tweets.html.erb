@@ -9,6 +9,7 @@
       <div class="control">
         <%= hidden_field_tag :content, params[:content] %>
         <%= hidden_field_tag :offset, params[:offset], value: tweets.length %>
+        <%= hidden_field_tag :user_id, params[:user_id] %>
         <%= submit_tag "もっと見る", class: "button is-medium is-fullwidth", id: "more-tweets" %>
       </div>
     </div>

@@ -47,15 +47,15 @@ class TweetsController < ApplicationController
     unless params[:content].blank?
       tweets = tweets.where("content LIKE ?", "%#{params[:content]}%")
     end
+    unless params[:user_id].blank?
+      tweets = tweets.where("user_id = ?", params[:user_id])
+    end
     tweets = tweets.order(id: :DESC).limit(10).offset(params[:offset])
     render 'home/index', locals: {
       results: {
         tweets: tweets
       }
     }
-    # render :json => { results: {
-    #   tweets: tweets,
-    # }}
   end
 
   private
