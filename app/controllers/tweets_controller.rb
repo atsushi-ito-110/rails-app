@@ -1,18 +1,21 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
   def create
-    @user = current_user
-    @tweet = @user.tweets.new(tweet_params)
-    if @tweet.save
+    tweet = current_user.tweets.new(tweet_params)
+    tweets = Tweet.all
+    unless params[:content].blank?
+      tweets = tweets.where("content LIKE ?", "%#{params[:content]}%")
+    end
+    tweets = tweets.order(id: :DESC).limit(10)
+    if tweet.save
       results = {
         flash: {
           notice: "ツイートしました",
           is_success: true,
         },
-        tweets: Tweet.all.order(id: "DESC"),
+        tweets: tweets,
         tweet: Tweet.new,
       }
-      logger.info(results[:tweets].length)
       render 'home/create', locals: { results: results }
     else
       results = {
@@ -33,9 +36,26 @@ class TweetsController < ApplicationController
     unless params[:content].blank?
       @tweets = @tweets.where("content LIKE ?", "%#{params[:content]}%")
     end
-    @tweets = @tweets.order(id: :DESC)
+    @tweets = @tweets.order(id: :DESC).limit(10)
     @tweet = @user.tweets.new()
     render 'home/index'
+  end
+
+  def index_part
+    logger.info(params.inspect)
+    tweets = Tweet.all
+    unless params[:content].blank?
+      tweets = tweets.where("content LIKE ?", "%#{params[:content]}%")
+    end
+    tweets = tweets.order(id: :DESC).limit(10).offset(params[:offset])
+    render 'home/index', locals: {
+      results: {
+        tweets: tweets
+      }
+    }
+    # render :json => { results: {
+    #   tweets: tweets,
+    # }}
   end
 
   private

@@ -1,0 +1,5 @@
+<% results[:tweets].each do |tweet| %>
+	$('.tweets').append('<%=j render "shared/tweets_row", tweet: tweet %>')
+<% end %>
+
+$('#offset').val(parseInt($('#offset').val()) + parseInt(<%= results[:tweets].length %>))

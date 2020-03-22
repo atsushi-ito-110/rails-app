@@ -12,6 +12,9 @@
   </div>
   <div class="main-fields">
     <div class="field">
+      <%= attachment_image_tag @user, :profile_image, :fill, 120, 120, format: 'jpeg', fallback: "no_image.png", size: "120x120" %>
+    </div>
+    <div class="field">
       <label for="">ニックネーム</label>
       <p><%= @user.name %></p>
     </div>
