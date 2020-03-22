@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if params[:id].to_i == current_user.id
       @user = User.find(params[:id])
     else
-      redirect_to user_path(params[:id])
+      redirect_to user_path(params[:id], user_id: params[:id].to_i)
     end
   end
 
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "保存しました"
-      redirect_to user_path(params[:id])
+      redirect_to user_path(params[:id], user_id: params[:id].to_i)
     else
       flash.now[:notice] = "保存に失敗しました"
       render 'users/edit'

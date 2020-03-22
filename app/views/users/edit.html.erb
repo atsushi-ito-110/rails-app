@@ -23,7 +23,7 @@
       </div>
       <div class="field">
         <div class="control">
-          <%= link_to "キャンセル", user_path(@user.id), class: "button is-white main-botton" %>
+          <%= link_to "キャンセル", user_path(@user.id, user_id: @user.id), class: "button is-white main-botton" %>
           <%= f.submit "保存", class: "button is-primary main-botton" %>
         </div>
       </div>

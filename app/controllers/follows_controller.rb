@@ -9,12 +9,12 @@ class FollowsController < ApplicationController
       follow = @user.follows.new(follow_params)
       follow.save
     end
-    redirect_to user_path(User.find(follow_user_id))
+    redirect_to user_path(User.find(follow_user_id), user_id: params[:follow_user_id].to_i)
   end
 
   def destroy
     Follow.where(user_id: current_user.id, follow_user_id: params[:follow_user_id]).destroy_all
-    redirect_to user_path(User.find(params[:follow_user_id]))
+    redirect_to user_path(User.find(params[:follow_user_id]), user_id: params[:follow_user_id].to_i)
   end
 
   private
