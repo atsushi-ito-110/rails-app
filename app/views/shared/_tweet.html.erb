@@ -1,6 +1,7 @@
 <div class="main-fields">
   <%= form_with model: tweet do |f| %>
     <div class="field">
+      <%= hidden_field_tag :content, params[:content] %>
       <%= f.text_area :content, placeholder: "ツイート", disabled: !user_signed_in?, class: "textarea #{'is-danger' unless tweet.errors.messages[:content].empty?}" %>
     </div>
     <div class="field is-grouped is-grouped-right">
