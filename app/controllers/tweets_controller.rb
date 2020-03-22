@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
     unless params[:content].blank?
       tweets = tweets.where("content LIKE ?", "%#{params[:content]}%")
     end
-    tweets = tweets.order(id: :DESC).limit(10)
+    tweets = tweets.order(id: :DESC).limit(20)
     if tweet.save
       results = {
         flash: {
@@ -36,7 +36,7 @@ class TweetsController < ApplicationController
     unless params[:content].blank?
       @tweets = @tweets.where("content LIKE ?", "%#{params[:content]}%")
     end
-    @tweets = @tweets.order(id: :DESC).limit(10)
+    @tweets = @tweets.order(id: :DESC).limit(20)
     @tweet = @user.tweets.new()
     render 'home/index'
   end
@@ -50,7 +50,7 @@ class TweetsController < ApplicationController
     unless params[:user_id].blank?
       tweets = tweets.where("user_id = ?", params[:user_id])
     end
-    tweets = tweets.order(id: :DESC).limit(10).offset(params[:offset])
+    tweets = tweets.order(id: :DESC).limit(20).offset(params[:offset])
     render 'home/index', locals: {
       results: {
         tweets: tweets

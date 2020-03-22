@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tweets = Tweet.where(user_id: params[:id]).order(id: :DESC).limit(10)
+    @tweets = Tweet.where(user_id: params[:id]).order(id: :DESC).limit(20)
     @follow = Follow.where(user_id: current_user.id, follow_user_id: params[:id])
     @follows = Follow.where(user_id: params[:id])
     @followers = Follow.where(follow_user_id: params[:id])
