@@ -79,8 +79,6 @@ group :production do
   gem 'mysql2'
 end
 
-gem 'bulmajs-rails'
-
 gem 'aws-sdk'
 
 gem 'jquery-rails'
