@@ -1,4 +1,4 @@
-<div class="tweet">
+<div class="tweet" id="tweet_<%= tweet.id %>">
   <div class="user clearfix">
     <%= link_to user_path(tweet.user_id, user_id: tweet.user_id), title: "ユーザ画面" do %>
       <%= attachment_image_tag tweet.user, :profile_image, :fill, 30, 30, class: "profile-image", format: 'jpeg', fallback: "no_image.png", size: "30x30" %>
@@ -7,11 +7,13 @@
     <div class="tweet_info">
       <ul>
         <li><%= tweet.created_at.strftime("%Y-%m-%d %H:%M") %></li>
-        <li>
-          <%= link_to tweet_path(tweet.id), method: :delete, class: "" do %>
-            <i class="far fa-trash-alt"></i>
-          <% end %>
-        </li>
+        <% if user_signed_in? && current_user.id == tweet.user_id %>
+          <li>
+            <%= link_to tweet_path(tweet.id), method: :delete, remote: true do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
       <span>
     </div>

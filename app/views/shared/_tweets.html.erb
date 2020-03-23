@@ -4,15 +4,17 @@
   <% end %>
 </div>
 <div>
-  <%= form_tag tweets_index_part_path, method: :get, remote: true do %>
-    <div class="field">
-      <div class="control">
-        <%= hidden_field_tag :content, params[:content] %>
-        <%= hidden_field_tag :offset, params[:offset], value: tweets.length %>
-        <%= hidden_field_tag :user_id, params[:user_id] %>
-        <%= submit_tag "もっと見る", class: "button is-medium is-fullwidth", id: "more-tweets" %>
+  <% if user_signed_in? %>
+    <%= form_tag tweets_index_part_path, method: :get, remote: true do %>
+      <div class="field">
+        <div class="control">
+          <%= hidden_field_tag :content, params[:content] %>
+          <%= hidden_field_tag :offset, params[:offset], value: tweets.length %>
+          <%= hidden_field_tag :user_id, params[:user_id] %>
+          <%= submit_tag "もっと見る", class: "button is-medium is-fullwidth", id: "more-tweets" %>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
 <script type="text/javascript">

@@ -58,6 +58,19 @@ class TweetsController < ApplicationController
     }
   end
 
+  def destroy
+    if Tweet.find(params[:id]).destroy
+      render 'tweets/destroy', locals: {
+        results: {
+          offset_minus: 1,
+          destroyed_tweet_id: params[:id],
+        }
+      }
+    else
+      render 'tweets/destroy'
+    end
+  end
+
   private
   def tweet_params
     params.require(:tweet).permit(:user_id, :content, tweet_images_images: [])

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions'
   }
   resources :users, only: [:index, :show, :edit, :update]
-  resources :tweets, only: [:create, :index]
+  resources :tweets, only: [:create, :index, :destroy]
   get 'tweets/index_part' => 'tweets#index_part'
   resources :follows, only: [:create, :destroy]
 end
