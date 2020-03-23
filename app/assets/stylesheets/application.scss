@@ -34,6 +34,7 @@ header {
   color: #FFFFFF;
   a, a:visited {
     color: #FFFFFF;
+    font-size: 24px;
   }
   .top {
     float: left;
@@ -49,7 +50,7 @@ header {
         text-align: center;
         line-height: 60px;
         float: left;
-        padding-left: 15px;
+        padding-left: 7px;
         .control {
           padding: 12px 0;
         }
@@ -59,7 +60,6 @@ header {
         }
         a {
           padding: 18px 0;
-          font-size: 24px;
         }
       }
     }

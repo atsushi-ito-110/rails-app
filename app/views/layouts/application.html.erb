@@ -11,7 +11,9 @@
   </head>
   <header id="header" class="">
     <div class="container">
-      <a href="/home" title="Home" class="top">Home</a>
+      <%= link_to home_path, title: "Home", class: "top" do %>
+        <i class="fas fa-home"></i>
+      <% end %>
       <nav>
         <ul>
           <% if user_signed_in? %>
