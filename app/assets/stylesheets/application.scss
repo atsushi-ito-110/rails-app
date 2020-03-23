@@ -136,8 +136,10 @@ header {
         margin-top: 10px;
       }
       .tweet_images {
+        margin: 5px;
         .tweet_image {
           float: left;
+          margin: 5px;
         }
       }
     }
@@ -214,8 +216,11 @@ header {
         margin-top: 10px;
       }
       .tweet_images {
+        margin: 5px;
         .tweet_image {
           float: left;
+          margin-left: 5px;
+          margin-top: 5px;
         }
       }
     }
