@@ -19,7 +19,7 @@
   $(window).bind("scroll", function () {
     var scrollHeight = $(document).height();
     var scrollPosition = $(window).height() + $(window).scrollTop();
-    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.10) {
+    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.30) {
       $('#more-tweets').trigger('click');
     }
   });
