@@ -1,11 +1,23 @@
 <div class="main-fields">
   <%= form_with model: tweet do |f| %>
+
+    <%= hidden_field_tag :content, params[:content] %>
     <div class="field">
-      <%= hidden_field_tag :content, params[:content] %>
       <%= f.text_area :content, placeholder: "ツイート", disabled: !user_signed_in?, class: "textarea #{'is-danger' unless tweet.errors.messages[:content].empty?}" %>
     </div>
+
+    <div class="field" class="">
+      <div class="file">
+        <label for="" class="file-label">
+          <input class="file-input" type="file" name="resume" style="">
+          <i class="fas fa-images"></i>
+        </label>
+      </div>
+    </div>
+
     <div class="field is-grouped is-grouped-right">
       <%= f.submit "ツイートする", class: "button is-primary main-botton", disabled: !user_signed_in? %>
     </div>
   <% end %>
 </div>
+
