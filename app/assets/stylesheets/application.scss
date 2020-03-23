@@ -129,8 +129,14 @@ header {
       a {
         float: left;
       }
-      .time {
-        float: right;
+      .tweet_info {
+        ul {
+          float: right;
+          li {
+            padding-left: 7px;
+            float: left;
+          }
+        }
       }
       &-content {
         margin-top: 10px;
@@ -209,8 +215,14 @@ header {
       a {
         float: left;
       }
-      .time {
-        float: right;
+      .tweet_info {
+        ul {
+          float: right;
+          li {
+            padding-left: 7px;
+            float: left;
+          }
+        }
       }
       &-content {
         margin-top: 10px;

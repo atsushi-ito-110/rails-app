@@ -4,7 +4,17 @@
       <%= attachment_image_tag tweet.user, :profile_image, :fill, 30, 30, class: "profile-image", format: 'jpeg', fallback: "no_image.png", size: "30x30" %>
       <span><%= tweet.user.name %></span>
     <% end %>
-    <span class="time"><%= tweet.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+    <div class="tweet_info">
+      <ul>
+        <li><%= tweet.created_at.strftime("%Y-%m-%d %H:%M") %></li>
+        <li>
+          <%= link_to tweet_path(tweet.id), method: :delete, class: "" do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </li>
+      </ul>
+      <span>
+    </div>
   </div>
   <div class="tweet-content clearfix">
     <%= simple_format(tweet.content) %>
