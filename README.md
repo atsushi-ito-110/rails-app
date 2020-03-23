@@ -21,4 +21,11 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+
+## Overview
+Ruby On Rails 勉強用にツイッターのクローンサイトを作成
+
+
+### Site URL
+http://18.182.167.136/
+基本的に停止してるのでみれないと思うが、たまに見れる。SSL化やドメイン取得は未定
