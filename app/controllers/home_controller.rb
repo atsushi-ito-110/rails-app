@@ -5,5 +5,6 @@ class HomeController < ApplicationController
     end
     @tweets = Tweet.all.order(id: :DESC).limit(20)
     @tweet = Tweet.new
+    @tweet.tweet_images.build
   end
 end
