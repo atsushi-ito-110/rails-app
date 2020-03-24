@@ -7,13 +7,13 @@
     <div class="tweet_info">
       <ul>
         <li><%= tweet.created_at.strftime("%Y-%m-%d %H:%M") %></li>
-        <%# if user_signed_in? && current_user.id == tweet.user_id %>
+        <% if user_signed_in? && current_user.id == tweet.user_id %>
           <li>
             <%= link_to tweet_path(tweet.id), method: :delete, remote: true do %>
               <i class="far fa-trash-alt"></i>
             <% end %>
           </li>
-        <%# end %>
+        <% end %>
       </ul>
       <span>
     </div>
