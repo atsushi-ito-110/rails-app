@@ -25,7 +25,6 @@
     if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.30) {
       if (progress) return;
       progress = true;
-      console.log("progress");
       $('#more-tweets').trigger('click');
       $('#more-tweets').prop('disabled', true);
     }
