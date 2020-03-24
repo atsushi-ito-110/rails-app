@@ -2,4 +2,10 @@
 	$('.tweets').append('<%=j render "shared/tweets_row", tweet: tweet %>')
 <% end %>
 
-$('#offset').val(parseInt($('#offset').val()) + parseInt(<%= results[:tweets].length %>))
+$('#offset').val(parseInt($('#offset').val()) + parseInt(<%= results[:tweets].length %>));
+
+<% if results[:is_requestable] %>
+  $("#more-tweets").prop("disabled", false);
+<% else results[:is_requestable] %>
+  $("#more-tweets").prop("disabled", true)
+<% end %>
