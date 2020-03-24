@@ -11,18 +11,24 @@
           <%= hidden_field_tag :content, params[:content] %>
           <%= hidden_field_tag :offset, params[:offset], value: tweets.length %>
           <%= hidden_field_tag :user_id, params[:user_id] %>
-          <%= submit_tag "もっと見る", class: "button is-medium is-fullwidth", id: "more-tweets" %>
+          <%= submit_tag "もっと見る", class: "button is-medium is-fullwidth", id: "more-tweets", 'data-disable-with' => false, data: { disable_with: "読込中..." } %>
         </div>
       </div>
     <% end %>
   <% end %>
 </div>
 <script type="text/javascript">
+  var progress = false;
   $(window).bind("scroll", function () {
     var scrollHeight = $(document).height();
     var scrollPosition = $(window).height() + $(window).scrollTop();
     if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.30) {
+      if (progress) return;
+      progress = true;
+      console.log("progress");
       $('#more-tweets').trigger('click');
+      $('#more-tweets').prop('disabled', true);
     }
+    progress = false;
   });
 </script>
