@@ -12,5 +12,5 @@ http://18.182.167.136/
 - MySQL
 - Nginx
 
-### Deployment instructions
+### Deploy方法
 - https://github.com/atsushi-ito-110/rails-app/blob/master/deploy.sh 参照
