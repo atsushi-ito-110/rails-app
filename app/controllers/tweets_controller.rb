@@ -51,9 +51,14 @@ class TweetsController < ApplicationController
       tweets = tweets.where("user_id = ?", params[:user_id])
     end
     tweets = tweets.order(id: :DESC).limit(20).offset(params[:offset])
+    is_requestable = true
+    if tweets.empty?
+      is_requestable = false
+    end
     render 'home/index', locals: {
       results: {
-        tweets: tweets
+        tweets: tweets,
+        is_requestable: is_requestable
       }
     }
   end
