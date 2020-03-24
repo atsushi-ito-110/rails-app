@@ -42,7 +42,6 @@ class TweetsController < ApplicationController
   end
 
   def index_part
-    logger.info(params.inspect)
     tweets = Tweet.all
     unless params[:content].blank?
       tweets = tweets.where("content LIKE ?", "%#{params[:content]}%")
@@ -59,6 +58,15 @@ class TweetsController < ApplicationController
   end
 
   def destroy
+    tweet = Tweet.find(params[:id])
+    unless current_user.id == tweet.user_id
+      render 'tweets/destroy', locals: {
+        results: {
+          offset_minus: 0,
+        }
+      }
+      return
+    end
     if Tweet.find(params[:id]).destroy
       render 'tweets/destroy', locals: {
         results: {
