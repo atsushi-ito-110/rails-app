@@ -3,7 +3,7 @@ class HomeController < ApplicationController
     if user_signed_in?
       @user = User.find(current_user.id)
     end
-    @tweets = Tweet.all.order(id: :DESC).limit(20)
+    @tweets = Tweet.search_limited
     @tweet = Tweet.new
     @tweet.tweet_images.build
   end
