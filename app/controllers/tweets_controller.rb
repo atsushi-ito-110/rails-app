@@ -33,7 +33,7 @@ class TweetsController < ApplicationController
     render 'home/index'
   end
 
-  def index_part
+  def more
     tweets = Tweet.search_limited(
       content: params[:content],
       user_id: params[:user_id],
