@@ -41,7 +41,7 @@ class TweetsController < ApplicationController
     render 'home/index'
   end
 
-  def index_part
+  def more
     tweets = Tweet.all
     unless params[:content].blank?
       tweets = tweets.where("content LIKE ?", "%#{params[:content]}%")

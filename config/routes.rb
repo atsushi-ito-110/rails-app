@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   }
   resources :users, only: [:index, :show, :edit, :update]
   resources :tweets, only: [:create, :index, :destroy]
-  get 'tweets/index_part' => 'tweets#index_part'
+  get 'tweets/more' => 'tweets#more'
   resources :follows, only: [:create, :destroy]
 end

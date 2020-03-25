@@ -5,7 +5,7 @@
 </div>
 <div>
   <% if user_signed_in? %>
-    <%= form_tag tweets_index_part_path, method: :get, remote: true do %>
+    <%= form_tag tweets_more_path, method: :get, remote: true do %>
       <div class="field">
         <div class="control">
           <%= hidden_field_tag :content, params[:content] %>
