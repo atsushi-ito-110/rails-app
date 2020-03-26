@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :tweets, only: [:create, :index, :destroy]
   get 'tweets/more' => 'tweets#more'
   resources :follows, only: [:create, :destroy]
+  resources :searches, only: [:index,]
+  get 'searches/more' => 'searches#more'
 end

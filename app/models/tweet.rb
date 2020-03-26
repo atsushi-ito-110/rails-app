@@ -14,8 +14,8 @@ class Tweet < ApplicationRecord
       return tweets.order(id: :DESC).limit(LIMIT).offset(OFFSET)
     end
     offset =  options[:offset].blank? ? OFFSET : options[:offset]
-    unless options[:content].blank?
-      tweets = tweets.where("content LIKE ?", "%#{options[:content]}%")
+    unless options[:search].blank?
+      tweets = tweets.where("content LIKE ?", "%#{options[:search]}%")
     end
     unless options[:user_id].blank?
       tweets = tweets.where("user_id = ?", options[:user_id])

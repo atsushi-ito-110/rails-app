@@ -1,9 +1,5 @@
 <div class="main-container">
 
-  <div class="notice-container">
-    <%= render "shared/notice", flash: flash %>
-  </div>
-
   <% if user_signed_in? %>
     <div class="tweet-container">
       <%= render "shared/tweet", tweet: @tweet %>

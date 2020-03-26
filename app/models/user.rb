@@ -6,4 +6,21 @@ class User < ApplicationRecord
   attachment :profile_image
   has_many :tweets
   has_many :follows
+
+  LIMIT = 20
+  OFFSET = 0
+
+  def self.search_limited(*args)
+    options = args[0]
+    rows = User.all
+    if options.blank?
+      return rows.order(id: :DESC).limit(LIMIT).offset(OFFSET)
+    end
+    unless options[:search].blank?
+      rows = rows.where("name LIKE ?", "%#{options[:search]}%")
+    end
+    offset = options[:offset].blank? ? OFFSET : options[:offset]
+    rows = rows.order(id: :DESC).limit(LIMIT).offset(offset)
+    return rows
+  end
 end
