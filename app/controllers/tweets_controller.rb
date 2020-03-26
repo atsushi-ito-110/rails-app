@@ -2,7 +2,7 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!
   def create
     tweet = current_user.tweets.new(tweet_params)
-    tweets = Tweet.search_limited(content: params[:content])
+    tweets = Tweet.search_limited(search: params[:search])
     if tweet.save
       results = {
         flash: {
@@ -19,6 +19,7 @@ class TweetsController < ApplicationController
           notice: "ツイートになにか入力してください",
           is_warning: true,
         },
+        tweet: tweet,
       }
       render 'home/create', locals: { results: results }
     end
@@ -28,14 +29,14 @@ class TweetsController < ApplicationController
     if user_signed_in?
       @user = current_user
     end
-    @tweets = Tweet.search_limited(content: params[:content])
+    @tweets = Tweet.search_limited(search: params[:search])
     @tweet = @user.tweets.new()
     render 'home/index'
   end
 
   def more
     tweets = Tweet.search_limited(
-      content: params[:content],
+      search: params[:search],
       user_id: params[:user_id],
       offset:  params[:offset]
     )
