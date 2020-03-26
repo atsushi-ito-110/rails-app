@@ -2,11 +2,7 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!
   def create
     tweet = current_user.tweets.new(tweet_params)
-    tweets = Tweet.all
-    unless params[:content].blank?
-      tweets = tweets.where("content LIKE ?", "%#{params[:content]}%")
-    end
-    tweets = tweets.order(id: :DESC).limit(20)
+    tweets = Tweet.search_limited(search: params[:search])
     if tweet.save
       results = {
         flash: {
@@ -23,6 +19,7 @@ class TweetsController < ApplicationController
           notice: "ツイートになにか入力してください",
           is_warning: true,
         },
+        tweet: tweet,
       }
       render 'home/create', locals: { results: results }
     end
@@ -32,24 +29,17 @@ class TweetsController < ApplicationController
     if user_signed_in?
       @user = current_user
     end
-    @tweets = Tweet.all
-    unless params[:content].blank?
-      @tweets = @tweets.where("content LIKE ?", "%#{params[:content]}%")
-    end
-    @tweets = @tweets.order(id: :DESC).limit(20)
+    @tweets = Tweet.search_limited(search: params[:search])
     @tweet = @user.tweets.new()
     render 'home/index'
   end
 
   def more
-    tweets = Tweet.all
-    unless params[:content].blank?
-      tweets = tweets.where("content LIKE ?", "%#{params[:content]}%")
-    end
-    unless params[:user_id].blank?
-      tweets = tweets.where("user_id = ?", params[:user_id])
-    end
-    tweets = tweets.order(id: :DESC).limit(20).offset(params[:offset])
+    tweets = Tweet.search_limited(
+      search: params[:search],
+      user_id: params[:user_id],
+      offset:  params[:offset]
+    )
     is_requestable = true
     if tweets.empty?
       is_requestable = false
