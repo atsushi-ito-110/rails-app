@@ -31,6 +31,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def more
+    users = User.search_limited(search: params[:search], offset:  params[:offset])
+    is_requestable = true
+    if users.empty?
+      is_requestable = false
+    end
+    render 'users/index', locals: {
+      results: {
+        users: users,
+        is_requestable: is_requestable
+      }
+    }
+  end
+
   def user_params
     params.require(:user).permit(:email, :name, :introduction, :profile_image)
   end

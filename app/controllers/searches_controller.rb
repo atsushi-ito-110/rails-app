@@ -7,7 +7,4 @@ class SearchesController < ApplicationController
       @users = User.search_limited(search: params[:search])
     end
   end
-
-  def more
-  end
 end
