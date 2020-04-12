@@ -38,7 +38,7 @@ set :repo_url, "git@github.com:atsushi-ito-110/rails-app.git"
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 set :deploy_to, "/home/ec2-user/rails-app"
-set :rbenv_ruby, '2.5.7'
+set :rbenv_ruby, '2.6.2'
 set :linked_files, %w{config/master.key .env}
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 namespace :deploy do
