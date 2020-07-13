@@ -40,7 +40,7 @@ set :repo_url, "git@github.com:atsushi-ito-110/rails-app.git"
 set :deploy_to, "/home/ec2-user/rails-app"
 set :rbenv_ruby, '2.6.2'
 set :linked_files, %w{config/master.key .env}
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/uploads", "public/system"
 namespace :deploy do
   desc 'Database'
   task :db_migrate do
@@ -52,5 +52,19 @@ namespace :deploy do
       end
     end
   end
+  # desc "Initial Deploy"
+  # task :initial do
+  #   on roles(:app) do
+  #     before 'deploy:restart', 'puma:start'
+  #     invoke 'deploy'
+  #   end
+  # end
+
+  # desc "Restart Application"
+  # task :restart do
+  #   on roles(:app), in: :sequence, wait: 5 do
+  #     invoke 'puma:restart'
+  #   end
+  # end
 end
 after 'bundler:install', 'deploy:db_migrate'
