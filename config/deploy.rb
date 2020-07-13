@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.12.1"
+lock "~> 3.14.1"
 
 set :application, "rails-app"
 set :repo_url, "git@github.com:atsushi-ito-110/rails-app.git"
@@ -52,19 +52,5 @@ namespace :deploy do
       end
     end
   end
-  # desc "Initial Deploy"
-  # task :initial do
-  #   on roles(:app) do
-  #     before 'deploy:restart', 'puma:start'
-  #     invoke 'deploy'
-  #   end
-  # end
-
-  # desc "Restart Application"
-  # task :restart do
-  #   on roles(:app), in: :sequence, wait: 5 do
-  #     invoke 'puma:restart'
-  #   end
-  # end
 end
 after 'bundler:install', 'deploy:db_migrate'
