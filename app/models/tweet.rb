@@ -9,7 +9,7 @@ class Tweet < ApplicationRecord
 
   def self.search_limited(*args)
     options = args[0]
-    tweets = Tweet.all
+    tweets = Tweet.all.includes([:user, :tweet_images])
     if options.blank?
       return tweets.order(id: :DESC).limit(LIMIT).offset(OFFSET)
     end
