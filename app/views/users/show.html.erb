@@ -23,15 +23,15 @@
       <p><%= simple_format(@user.introduction) %></p>
     </div>
     <div class="field">
-      <p>ツイート <%= @tweet_count %> フォロー <%= @follows.length %> フォロワー <%= @followers.length %></p>
+      <p>ツイート <%= @user.tweets.length %> フォロー <%= @user.follows.length %> フォロワー <%= @user.followers.length %></p>
     </div>
     <% unless @user.id == current_user.id %>
       <div class="field">
         <div class="control">
-          <% if @follow.empty? %>
-            <%= button_to "Follow", follows_path({follow_user_id: @user.id}), method: :post, class: "button is-info" %>
-          <% else %>
+          <% if current_user.already_followed?(@user) %>
             <%= button_to "Unfollow", follow_path({follow_user_id: @user.id}), method: :delete, class: "button" %>
+          <% else %>
+            <%= button_to "Follow", follows_path({follow_user_id: @user.id}), method: :post, class: "button is-info" %>
           <% end %>
         </div>
       </div>

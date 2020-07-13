@@ -5,7 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   attachment :profile_image
   has_many :tweets
-  has_many :follows
+  has_many :follows  , class_name: "Follow", foreign_key: "user_id"
+  has_many :followers, class_name: "Follow", foreign_key: "follow_user_id"
+
+  def already_followed?(user)
+    Follow.find_by(follow_user_id: user.id, user_id: self.id)
+  end
 
   LIMIT = 20
   OFFSET = 0
