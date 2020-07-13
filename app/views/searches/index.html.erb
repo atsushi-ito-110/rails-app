@@ -2,7 +2,7 @@
 
   <div class="searches-container">
     <%= form_tag searches_path, method: :get, local: true, id: "search_tabs_form" do %>
-      <div class="tabs is-centered">
+      <div class="tabs is-boxed">
         <%= hidden_field_tag :search_type, params[:search_type], class: "search_type" %>
         <%= hidden_field_tag :search, params[:search] %>
         <ul>
