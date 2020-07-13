@@ -15,10 +15,6 @@ class TweetsController < ApplicationController
       render 'home/create', locals: { results: results }
     else
       results = {
-        flash: {
-          notice: "ツイートになにか入力してください",
-          is_warning: true,
-        },
         tweet: tweet,
       }
       render 'home/create', locals: { results: results }
