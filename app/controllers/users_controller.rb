@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  def index
-  end
+  def index; end
 
   def show
     @user = User.find(params[:id])
@@ -20,20 +19,18 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = "保存しました"
+      flash[:notice] = '保存しました'
       redirect_to user_path(params[:id], user_id: params[:id].to_i)
     else
-      flash.now[:notice] = "保存に失敗しました"
+      flash.now[:notice] = '保存に失敗しました'
       render 'users/edit'
     end
   end
 
   def more
-    users = User.search_limited(search: params[:search], offset:  params[:offset])
+    users = User.search_limited(search: params[:search], offset: params[:offset])
     is_requestable = true
-    if users.empty?
-      is_requestable = false
-    end
+    is_requestable = false if users.empty?
     render 'users/index', locals: {
       results: {
         users: users,
@@ -43,6 +40,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:email, :name, :introduction, :profile_image)
   end

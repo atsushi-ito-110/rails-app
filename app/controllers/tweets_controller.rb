@@ -6,27 +6,25 @@ class TweetsController < ApplicationController
     if tweet.save
       results = {
         flash: {
-          notice: "ツイートしました",
-          is_success: true,
+          notice: 'ツイートしました',
+          is_success: true
         },
         tweets: tweets,
-        tweet: Tweet.new,
+        tweet: Tweet.new
       }
       render 'home/create', locals: { results: results }
     else
       results = {
-        tweet: tweet,
+        tweet: tweet
       }
       render 'home/create', locals: { results: results }
     end
   end
 
   def index
-    if user_signed_in?
-      @user = current_user
-    end
+    @user = current_user if user_signed_in?
     @tweets = Tweet.search_limited(search: params[:search])
-    @tweet = @user.tweets.new()
+    @tweet = @user.tweets.new
     render 'home/index'
   end
 
@@ -34,12 +32,10 @@ class TweetsController < ApplicationController
     tweets = Tweet.search_limited(
       search: params[:search],
       user_id: params[:user_id],
-      offset:  params[:offset]
+      offset: params[:offset]
     )
     is_requestable = true
-    if tweets.empty?
-      is_requestable = false
-    end
+    is_requestable = false if tweets.empty?
     render 'home/index', locals: {
       results: {
         tweets: tweets,
@@ -53,7 +49,7 @@ class TweetsController < ApplicationController
     unless current_user.id == tweet.user_id
       render 'tweets/destroy', locals: {
         results: {
-          offset_minus: 0,
+          offset_minus: 0
         }
       }
       return
@@ -62,7 +58,7 @@ class TweetsController < ApplicationController
       render 'tweets/destroy', locals: {
         results: {
           offset_minus: 1,
-          destroyed_tweet_id: params[:id],
+          destroyed_tweet_id: params[:id]
         }
       }
     else
@@ -71,6 +67,7 @@ class TweetsController < ApplicationController
   end
 
   private
+
   def tweet_params
     params.require(:tweet).permit(:user_id, :content, tweet_images_images: [])
   end

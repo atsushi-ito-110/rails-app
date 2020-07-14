@@ -12,8 +12,8 @@ module RailsApp
     config.load_defaults 5.2
     config.time_zone = 'Asia/Tokyo'
     config.active_record.default_timezone = :local
-    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
-      unless instance.kind_of?(ActionView::Helpers::Tags::Label)
+    config.action_view.field_error_proc = proc do |html_tag, instance|
+      unless instance.is_a?(ActionView::Helpers::Tags::Label)
         "#{html_tag}<p class=\"help is-danger\">#{instance.error_message.first}</p>".html_safe
       end
     end

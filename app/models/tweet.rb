@@ -9,19 +9,13 @@ class Tweet < ApplicationRecord
 
   def self.search_limited(*args)
     options = args[0]
-    tweets = Tweet.all.includes([:user, :tweet_images])
-    if options.blank?
-      return tweets.order(id: :DESC).limit(LIMIT).offset(OFFSET)
-    end
-    offset =  options[:offset].blank? ? OFFSET : options[:offset]
-    unless options[:search].blank?
-      tweets = tweets.where("content LIKE ?", "%#{options[:search]}%")
-    end
-    unless options[:user_id].blank?
-      tweets = tweets.where("user_id = ?", options[:user_id])
-    end
-    tweets = tweets.order(id: :DESC).limit(LIMIT).offset(offset)
-    return tweets
-  end
+    tweets = Tweet.all.includes(%i[user tweet_images])
+    return tweets.order(id: :DESC).limit(LIMIT).offset(OFFSET) if options.blank?
 
+    offset = options[:offset].blank? ? OFFSET : options[:offset]
+    tweets = tweets.where('content LIKE ?', "%#{options[:search]}%") unless options[:search].blank?
+    tweets = tweets.where('user_id = ?', options[:user_id]) unless options[:user_id].blank?
+    tweets = tweets.order(id: :DESC).limit(LIMIT).offset(offset)
+    tweets
+  end
 end

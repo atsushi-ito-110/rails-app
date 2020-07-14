@@ -5,11 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   attachment :profile_image
   has_many :tweets
-  has_many :follows  , class_name: "Follow", foreign_key: "user_id"
-  has_many :followers, class_name: "Follow", foreign_key: "follow_user_id"
+  has_many :follows, class_name: 'Follow', foreign_key: 'user_id'
+  has_many :followers, class_name: 'Follow', foreign_key: 'follow_user_id'
 
   def already_followed?(user)
-    Follow.find_by(follow_user_id: user.id, user_id: self.id)
+    Follow.find_by(follow_user_id: user.id, user_id: id)
   end
 
   LIMIT = 20
@@ -18,14 +18,11 @@ class User < ApplicationRecord
   def self.search_limited(*args)
     options = args[0]
     rows = User.all
-    if options.blank?
-      return rows.order(id: :DESC).limit(LIMIT).offset(OFFSET)
-    end
-    unless options[:search].blank?
-      rows = rows.where("name LIKE ?", "%#{options[:search]}%")
-    end
+    return rows.order(id: :DESC).limit(LIMIT).offset(OFFSET) if options.blank?
+
+    rows = rows.where('name LIKE ?', "%#{options[:search]}%") unless options[:search].blank?
     offset = options[:offset].blank? ? OFFSET : options[:offset]
     rows = rows.order(id: :DESC).limit(LIMIT).offset(offset)
-    return rows
+    rows
   end
 end

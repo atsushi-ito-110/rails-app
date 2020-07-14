@@ -1,8 +1,8 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.14.1"
+lock '~> 3.14.1'
 
-set :application, "rails-app"
-set :repo_url, "git@github.com:atsushi-ito-110/rails-app.git"
+set :application, 'rails-app'
+set :repo_url, 'git@github.com:atsushi-ito-110/rails-app.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -37,14 +37,14 @@ set :repo_url, "git@github.com:atsushi-ito-110/rails-app.git"
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-set :deploy_to, "/home/ec2-user/rails-app"
+set :deploy_to, '/home/ec2-user/rails-app'
 set :rbenv_ruby, '2.6.2'
-set :linked_files, %w{config/master.key .env}
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/uploads", "public/system"
+set :linked_files, %w[config/master.key .env]
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'tmp/uploads', 'public/system'
 namespace :deploy do
   desc 'Database'
   task :db_migrate do
-    on roles(:app) do |host|
+    on roles(:app) do |_host|
       with rails_env: fetch(:rails_env) do
         within current_path do
           execute :bundle, :exec, :rake, 'db:migrate'
