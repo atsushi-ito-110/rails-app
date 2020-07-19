@@ -15,3 +15,15 @@
 //= require jquery
 //= require turbolinks
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  var button_delete = document.querySelector('.delete')
+
+  button_delete.addEventListener('click', function (event) {
+    var _this = this
+    _this.parentNode.classList.add('is-hidden')
+  })
+  setTimeout(function () {
+    button_delete.click()
+  }, 2500)
+});

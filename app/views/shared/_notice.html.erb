@@ -1,23 +1,18 @@
 <% if flash[:notice]  %>
   <% if flash[:is_warning] %>
     <div class="notification is-warning">
+      <button class="delete"></button>
+      <%= flash[:notice] %>
+    </div>
   <% elsif flash[:is_success] %>
     <div class="notification is-success">
+      <button class="delete"></button>
+      <%= flash[:notice] %>
+    </div>
   <% else %>
     <div class="notification">
+      <button class="delete"></button>
+      <%= flash[:notice] %>
+    </div>
   <% end %>
-    <button class="delete"></button>
-    <%= flash[:notice] %>
-  </div>
-  <script type="text/javascript">
-    var button_delete = document.querySelector('.delete')
-
-    button_delete.addEventListener('click', function (event) {
-      var _this = this
-      _this.parentNode.classList.add('is-hidden')
-    })
-    setTimeout(function () {
-      button_delete.click()
-    }, 2500)
-  </script>
 <% end %>
