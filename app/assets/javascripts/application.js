@@ -27,3 +27,17 @@ $(document).on('turbolinks:load', function() {
     button_delete.click()
   }, 2500)
 });
+
+$(document).on('turbolinks:load', function() {
+  $('.file-image').change(function(){
+    $('.image-preview-field').html("");
+    for (var i = 0; i < $('input[type="file"]').prop('files').length; i++) {
+      var fileReader = new FileReader();
+      fileReader.onload = function(e) {
+        var html = `<img src="${e.target.result}" width="120" height="120" style="margin-left: 5px;">`
+        $('.image-preview-field').append(html);
+      }
+      fileReader.readAsDataURL($('input[type="file"]').prop('files')[i]);
+    }
+  });
+});
