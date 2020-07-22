@@ -18,7 +18,7 @@
 
 $(document).on('turbolinks:load', function() {
   var button_delete = document.querySelector('.delete')
-
+  if (!button_delete) return;
   button_delete.addEventListener('click', function (event) {
     var _this = this
     _this.parentNode.classList.add('is-hidden')
