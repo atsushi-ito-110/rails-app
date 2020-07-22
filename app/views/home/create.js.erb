@@ -5,7 +5,7 @@
 
 <% unless results[:tweet].nil? %>
   $(".tweet-container").html('')
-  $(".tweet-container").html('<%=j render "shared/tweet", tweet: results[:tweet] %>')
+  $(".tweet-container").html('<%=j render "shared/tweet_form", tweet: results[:tweet] %>')
 <% end %>
 
 <% unless results[:tweets].nil? %>

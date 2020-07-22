@@ -20,19 +20,6 @@
       <%= f.submit "ツイートする", class: "button is-primary main-botton", disabled: !user_signed_in? %>
     </div>
   <% end %>
+  <script type="text/javascript">
+  </script>
 </div>
-<script type="text/javascript">
-  $(function(){
-    $('.file-image').change(function(){
-      $('.image-preview-field').html("");
-      for (var i = 0; i < $('input[type="file"]').prop('files').length; i++) {
-        var fileReader = new FileReader();
-        fileReader.onload = function(e) {
-          var html = `<img src="${e.target.result}" width="120" height="120" style="margin-left: 5px;">`
-          $('.image-preview-field').append(html);
-        }
-        fileReader.readAsDataURL($('input[type="file"]').prop('files')[i]);
-      }
-    });
-  });
-</script>
